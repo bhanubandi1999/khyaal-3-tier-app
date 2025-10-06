@@ -1,32 +1,34 @@
+# Prod environment-specific values
 appName: khyaal
+environment: prod
 
 frontend:
   image: nginxdemos/hello
   port: 80
-  replicas: 1
+  replicas: 3
   resources:
     requests:
-      cpu: 200m
-      memory: 256Mi
-    limits:
-      cpu: 400m
+      cpu: 500m
       memory: 512Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
 
 backend:
   image: kennethreitz/httpbin
   port: 80
-  replicas: 1
+  replicas: 3
   resources:
     requests:
-      cpu: 200m
-      memory: 256Mi
-    limits:
-      cpu: 400m
+      cpu: 500m
       memory: 512Mi
+    limits:
+      cpu: 1
+      memory: 1Gi
 
 database:
-  image: postgresql:latest
-  port: 5432
+  image: postgres:16.1
   username: postgres
   password: postgres
-  storage: 1Gi
+  port: 5432
+  storage: 5Gi
