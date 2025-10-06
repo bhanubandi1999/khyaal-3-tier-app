@@ -39,4 +39,4 @@ spec:
   ports:
     - port: 5432
       targetPort: {{ .Values.postgres.port | default 5432 }}
-  type: ClusterIP
+  type: nodePort
