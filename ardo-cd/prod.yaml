@@ -8,11 +8,11 @@ spec:
   source:
     repoURL: '<REPO_URL>'
     targetRevision: HEAD
-    path: '.'
+    path: 'khyaal'
     helm:
       valueFiles:
         - values.yaml
-        - values-prod.yaml
+        - prod/values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: prod
