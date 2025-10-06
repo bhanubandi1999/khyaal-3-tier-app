@@ -38,5 +38,5 @@ spec:
     app: {{ .Values.appName }}-db-{{ .Values.environment }}
   ports:
     - port: 5432
-      targetPort: {{ .Values.database.port | default 5432 }}
+      targetPort: {{ .Values.postgres.port | default 5432 }}
   type: ClusterIP
