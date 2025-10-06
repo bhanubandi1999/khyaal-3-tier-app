@@ -37,6 +37,6 @@ spec:
   selector:
     app: {{ .Values.appName }}-db-{{ .Values.environment }}
   ports:
-    - port: 5432
-      targetPort: {{ .Values.postgres.port | default 5432 }}
+    - port: 3306
+      targetPort: {{ .Values.postgres.port }}
   type: nodePort

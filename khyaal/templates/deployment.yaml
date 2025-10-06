@@ -90,7 +90,7 @@ spec:
               value: {{ .Values.postgres.password }}
           volumeMounts:
             - name: data
-              mountPath: /var/lib/postgresql/data
+              mountPath: /var/lib/mysql/data
       volumes:
         - name: data
           emptyDir: {}
