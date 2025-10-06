@@ -59,7 +59,7 @@ spec:
             - name: DATABASE_HOST
               value: "{{ .Values.appName }}-db-{{ .Values.environment }}"
             - name: DATABASE_PORT
-              value: "{{ .Values.database.port }}"
+              value: "{{ .Values.postgres.port }}"
 
 ---
 
@@ -80,14 +80,14 @@ spec:
     spec:
       containers:
         - name: db
-          image: {{ .Values.database.image }}
+          image: {{ .Values.postgres.image }}
           ports:
-            - containerPort: {{ .Values.database.port }}
+            - containerPort: {{ .Values.postgres.port }}
           env:
             - name: POSTGRES_USER
-              value: {{ .Values.database.username }}
+              value: {{ .Values.postgres.username }}
             - name: POSTGRES_PASSWORD
-              value: {{ .Values.database.password }}
+              value: {{ .Values.postgres.password }}
           volumeMounts:
             - name: data
               mountPath: /var/lib/postgresql/data
