@@ -15,7 +15,7 @@ backend:
   resources: {}
 
 postgres:
-  image: postgres:latest
+  image: postgres
   port: 5432
   username: postgres
   password: postgres
