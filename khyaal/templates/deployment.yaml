@@ -84,10 +84,14 @@ spec:
           ports:
             - containerPort: {{ .Values.postgres.port }}
           env:
-            - name: POSTGRES_USER
-              value: {{ .Values.postgres.username }}
-            - name: POSTGRES_PASSWORD
-              value: {{ .Values.postgres.password }}
+            - name: mysqlRootPassword
+              value: {{ .Values.postgres.mysqlRootPassword }}
+            - name: mysqlDatabase
+              value: {{ .Values.postgres.mysqlDatabase }}
+            - name: mysqlUser
+              value: {{ .Values.postgres.mysqlUser }}
+            - name: mysqlPassword
+              value: {{ .Values.postgres.mysqlPassword }}
           volumeMounts:
             - name: data
               mountPath: /var/lib/mysql/data
