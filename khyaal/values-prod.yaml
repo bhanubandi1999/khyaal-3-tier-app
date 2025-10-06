@@ -1,0 +1,8 @@
+environment: prod
+
+frontend:
+  replicas: 3
+backend:
+  replicas: 3
+database:
+  storage: 5Gi

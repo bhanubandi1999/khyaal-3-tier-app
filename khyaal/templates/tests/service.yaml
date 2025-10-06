@@ -1,0 +1,42 @@
+# FRONTEND SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.appName }}-frontend-{{ .Values.environment }}
+spec:
+  selector:
+    app: {{ .Values.appName }}-frontend-{{ .Values.environment }}
+  ports:
+    - port: 80
+      targetPort: {{ .Values.frontend.port }}
+  type: LoadBalancer
+
+---
+
+# BACKEND SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.appName }}-backend-{{ .Values.environment }}
+spec:
+  selector:
+    app: {{ .Values.appName }}-backend-{{ .Values.environment }}
+  ports:
+    - port: 80
+      targetPort: {{ .Values.backend.port }}
+  type: ClusterIP
+
+---
+
+# DATABASE SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.appName }}-db-{{ .Values.environment }}
+spec:
+  selector:
+    app: {{ .Values.appName }}-db-{{ .Values.environment }}
+  ports:
+    - port: 5432
+      targetPort: {{ .Values.database.port }}
+  type: ClusterIP

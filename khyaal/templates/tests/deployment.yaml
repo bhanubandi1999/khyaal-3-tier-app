@@ -1,0 +1,96 @@
+# FRONTEND
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}-frontend-{{ .Values.environment }}
+spec:
+  replicas: {{ .Values.frontend.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}-frontend-{{ .Values.environment }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}-frontend-{{ .Values.environment }}
+    spec:
+      containers:
+        - name: frontend
+          image: {{ .Values.frontend.image }}
+          ports:
+            - containerPort: {{ .Values.frontend.port }}
+          resources:
+            requests:
+              cpu: {{ .Values.frontend.resources.requests.cpu }}
+              memory: {{ .Values.frontend.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.frontend.resources.limits.cpu }}
+              memory: {{ .Values.frontend.resources.limits.memory }}
+
+---
+
+# BACKEND
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}-backend-{{ .Values.environment }}
+spec:
+  replicas: {{ .Values.backend.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}-backend-{{ .Values.environment }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}-backend-{{ .Values.environment }}
+    spec:
+      containers:
+        - name: backend
+          image: {{ .Values.backend.image }}
+          ports:
+            - containerPort: {{ .Values.backend.port }}
+          resources:
+            requests:
+              cpu: {{ .Values.backend.resources.requests.cpu }}
+              memory: {{ .Values.backend.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.backend.resources.limits.cpu }}
+              memory: {{ .Values.backend.resources.limits.memory }}
+          env:
+            - name: DATABASE_HOST
+              value: "{{ .Values.appName }}-db-{{ .Values.environment }}"
+            - name: DATABASE_PORT
+              value: "{{ .Values.database.port }}"
+
+---
+
+# DATABASE
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}-db-{{ .Values.environment }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}-db-{{ .Values.environment }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}-db-{{ .Values.environment }}
+    spec:
+      containers:
+        - name: db
+          image: {{ .Values.database.image }}
+          ports:
+            - containerPort: {{ .Values.database.port }}
+          env:
+            - name: POSTGRES_USER
+              value: {{ .Values.database.username }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.database.password }}
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data
+          emptyDir: {}

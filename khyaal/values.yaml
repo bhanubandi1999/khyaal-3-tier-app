@@ -1,0 +1,33 @@
+appName: khyaal
+environment: dev
+
+frontend:
+  image: nginxdemos/hello
+  port: 80
+  replicas: 1
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 400m
+      memory: 512Mi
+
+backend:
+  image: kennethreitz/httpbin
+  port: 80
+  replicas: 1
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 400m
+      memory: 512Mi
+
+database:
+  image: bitnami/postgresql:16.1.0
+  port: 5432
+  username: postgres
+  password: postgres
+  storage: 1Gi
