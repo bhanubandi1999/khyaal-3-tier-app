@@ -1,5 +1,4 @@
 appName: khyaal
-environment: dev
 
 frontend:
   image: nginxdemos/hello
@@ -26,7 +25,7 @@ backend:
       memory: 512Mi
 
 database:
-  image: postgresql:16.1.0
+  image: postgresql:latest
   port: 5432
   username: postgres
   password: postgres
