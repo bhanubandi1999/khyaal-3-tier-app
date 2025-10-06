@@ -1,6 +1,8 @@
 replicaCount: 1
 
 imagePullPolicy: IfNotPresent
+appName: khyaal
+
 
 frontend:
   image: nginxdemos/hello
