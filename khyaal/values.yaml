@@ -14,13 +14,13 @@ backend:
   port: 80
   resources: {}
 
-postgres:
+db:
   image: mysql
   port: 3306
-  mysqlRootPassword: mysql   # override per environment
-  mysqlDatabase: mysql
-  mysqlUser: mysql
-  mysqlPassword: mysql
+  mysqlRootPassword: rootpassword       # required
+  mysqlDatabase: mydb
+  mysqlUser: myuser
+  mysqlPassword: mypassword
   resources: {}
 
 hpa:
