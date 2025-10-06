@@ -1,0 +1,26 @@
+replicaCount: 1
+
+imagePullPolicy: IfNotPresent
+
+frontend:
+  image: nginxdemos/hello
+  port: 80
+  resources: {}
+
+backend:
+  image: kennethreitz/httpbin
+  port: 80
+  resources: {}
+
+postgres:
+  image: bitnami/postgresql:16.1.0
+  port: 5432
+  username: postgres
+  password: postgres
+  resources: {}
+
+hpa:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 50
