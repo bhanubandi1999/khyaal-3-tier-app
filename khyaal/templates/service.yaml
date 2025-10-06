@@ -39,4 +39,4 @@ spec:
   ports:
     - port: 3306
       targetPort: {{ .Values.postgres.port }}
-  type: NordPort
+  type: ClusterIP
