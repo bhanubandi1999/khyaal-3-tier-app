@@ -4,7 +4,7 @@ imagePullPolicy: IfNotPresent
 
 frontend:
   image: nginxdemos/hello
-  port: 80
+  port: 8080
   resources: {}
 
 backend:
@@ -13,7 +13,7 @@ backend:
   resources: {}
 
 postgres:
-  image: bitnami/postgresql:16.1.0
+  image: postgresql:latest
   port: 5432
   username: postgres
   password: postgres
