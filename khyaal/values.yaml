@@ -15,7 +15,7 @@ backend:
   resources: {}
 
 postgres:
-  image: mysql:8.0.43-debian
+  image: mysql
   port: 3306
   username: postgres
   password: postgres
