@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.appName }}-frontend-{{ .Values.environment }}
+  name: {{.Values.appName}}-frontend-{{.Values.environment}}
 spec:
   selector:
-    app: {{ .Values.appName }}-frontend-{{ .Values.environment }}
+    app: {{.Values.appName}}-frontend-{{.Values.environment}}
   ports:
-    - port: {{ .Values.frontend.port}}
-      targetPort: {{ .Values.frontend.port}}
+    - port: {{.Values.frontend.port}}
+      targetPort: {{.Values.frontend.port}}
   type: ClusterIP
 
 ---
@@ -17,13 +17,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.appName }}-backend-{{ .Values.environment }}
+  name: {{.Values.appName}}-backend-{{.Values.environment}}
 spec:
   selector:
-    app: {{ .Values.appName }}-backend-{{ .Values.environment }}
+    app: {{.Values.appName}}-backend-{{.Values.environment}}
   ports:
-    - port: {{ .Values.backend.port}}
-      targetPort: {{ .Values.backend.port }}
+    - port: {{.Values.backend.port}}
+      targetPort: {{.Values.backend.port}}
   type: ClusterIP
 
 ---
@@ -32,11 +32,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.appName }}-db-{{ .Values.environment }}
+  name: {{.Values.appName}}-db-{{.Values.environment}}
 spec:
   selector:
-    app: {{ .Values.appName }}-db-{{ .Values.environment }}
+    app: {{.Values.appName}}-db-{{.Values.environment}}
   ports:
-    - port: {{ .Values.db.port }}
-      targetPort: {{ .Values.db.port }}
+    - port: {{.Values.db.port}}
+      targetPort: {{.Values.db.port}}
   type: ClusterIP

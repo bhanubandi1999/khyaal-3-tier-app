@@ -2,29 +2,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.appName }}-frontend-{{ .Values.environment }}
+  name: {{.Values.appName}}-frontend-{{.Values.environment}}
 spec:
-  replicas: {{ .Values.frontend.replicas }}
+  replicas: {{.Values.frontend.replicas}}
   selector:
     matchLabels:
-      app: {{ .Values.appName }}-frontend-{{ .Values.environment }}
+      app: {{.Values.appName}}-frontend-{{.Values.environment}}
   template:
     metadata:
       labels:
-        app: {{ .Values.appName }}-frontend-{{ .Values.environment }}
+        app: {{.Values.appName}}-frontend-{{.Values.environment}}
     spec:
       containers:
         - name: frontend
-          image: {{ .Values.frontend.image }}
+          image: {{.Values.frontend.image}}
           ports:
-            - containerPort: {{ .Values.frontend.port }}
+            - containerPort: {{.Values.frontend.port}}
           resources:
             requests:
-              cpu: {{ .Values.frontend.resources.requests.cpu }}
-              memory: {{ .Values.frontend.resources.requests.memory }}
+              cpu: {{.Values.frontend.resources.requests.cpu}}
+              memory: {{.Values.frontend.resources.requests.memory}}
             limits:
-              cpu: {{ .Values.frontend.resources.limits.cpu }}
-              memory: {{ .Values.frontend.resources.limits.memory }}
+              cpu: {{.Values.frontend.resources.limits.cpu}}
+              memory: {{.Values.frontend.resources.limits.memory}}
 
 ---
 
@@ -32,34 +32,34 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.appName }}-backend-{{ .Values.environment }}
+  name: {{.Values.appName}}-backend-{{.Values.environment}}
 spec:
-  replicas: {{ .Values.backend.replicas }}
+  replicas: {{.Values.backend.replicas}}
   selector:
     matchLabels:
-      app: {{ .Values.appName }}-backend-{{ .Values.environment }}
+      app: {{.Values.appName}}-backend-{{.Values.environment}}
   template:
     metadata:
       labels:
-        app: {{ .Values.appName }}-backend-{{ .Values.environment }}
+        app: {{.Values.appName}}-backend-{{.Values.environment}}
     spec:
       containers:
         - name: backend
-          image: {{ .Values.backend.image }}
+          image: {{.Values.backend.image}}
           ports:
-            - containerPort: {{ .Values.backend.port }}
+            - containerPort: {{.Values.backend.port}}
           resources:
             requests:
-              cpu: {{ .Values.backend.resources.requests.cpu }}
-              memory: {{ .Values.backend.resources.requests.memory }}
+              cpu: {{.Values.backend.resources.requests.cpu}}
+              memory: {{.Values.backend.resources.requests.memory}}
             limits:
-              cpu: {{ .Values.backend.resources.limits.cpu }}
-              memory: {{ .Values.backend.resources.limits.memory }}
+              cpu: {{.Values.backend.resources.limits.cpu}}
+              memory: {{.Values.backend.resources.limits.memory}}
           env:
             - name: SPRING_DATASOURCE_USERNAME
-              value: "{{ .Values.db.postgresUser }}"
+              value: "{{.Values.db.postgresUser}}"
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "{{ .Values.db.postgresPassword }}"
+              value: "{{.Values.db.postgresPassword}}"
 
 ---
 
@@ -67,29 +67,29 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.appName }}-db-{{ .Values.environment }}
+  name: {{.Values.appName}}-db-{{.Values.environment}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.appName }}-db-{{ .Values.environment }}
+      app: {{.Values.appName}}-db-{{.Values.environment}}
   template:
     metadata:
       labels:
-        app: {{ .Values.appName }}-db-{{ .Values.environment }}
+        app: {{.Values.appName}}-db-{{.Values.environment}}
     spec:
       containers:
         - name: db
-          image: {{ .Values.db.image }}
+          image: {{.Values.db.image}}
           ports:
-            - containerPort: {{ .Values.db.port }}
+            - containerPort: {{.Values.db.port}}
           env:
             - name: POSTGRES_USER
-              value: "{{ .Values.db.username }}"
+              value: "{{.Values.db.username}}"
             - name: POSTGRES_PASSWORD
-              value: "{{ .Values.db.password }}"
+              value: "{{.Values.db.password}}"
             - name: POSTGRES_DB
-              value: "{{ .Values.db.database }}"
+              value: "{{.Values.db.database}}"
           volumeMounts:
             - name: data
               mountPath: /data
