@@ -10,7 +10,7 @@ frontend:
   resources: {}
 
 backend:
-  image: kbhanubandi1999/back-k8s
+  image: bhanubandi1999/back-k8s
   port: 8080
   resources: {}
 
