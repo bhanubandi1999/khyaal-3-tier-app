@@ -62,7 +62,7 @@ spec:
               value: postgres
             - name: SPRING_DATASOURCE_PASSWORD
               value: root
-  
+
 
 ---
 
@@ -86,18 +86,17 @@ spec:
           image: {{ .Values.db.image }}
           ports:
             - containerPort: {{ .Values.db.port }}
-          env:
-              - name: MYSQL_ROOT_PASSWORD
-                value: "{{ .Values.db.mysqlRootPassword }}"
-              - name: MYSQL_DATABASE
-                value: "{{ .Values.db.mysqlDatabase }}"
-              - name: MYSQL_USER
-                value: "{{ .Values.db.mysqlUser }}"
-              - name: MYSQL_PASSWORD
-                value: "{{ .Values.db.mysqlPassword }}"
-          volumeMounts:
-            - name: data
-              mountPath: /var/lib/mysql
+        env:
+          - name: POSTGRES_USER
+            value: "{{ .Values.db.postgresUser }}"
+          - name: POSTGRES_PASSWORD
+            value: "{{ .Values.db.postgresPassword }}"
+          - name: POSTGRES_DB
+            value: "{{ .Values.db.postgresDatabase }}"
+        volumeMounts:
+          - name: data
+            mountPath: /var/lib/postgresql/data
+
       volumes:
         - name: data
           emptyDir: {}
