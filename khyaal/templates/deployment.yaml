@@ -85,11 +85,11 @@ spec:
             - containerPort: {{ .Values.db.port }}
           env:
             - name: POSTGRES_USER
-              value: "{{ .Values.db.postgresUser }}"
+              value: "{{ .Values.db.username }}"
             - name: POSTGRES_PASSWORD
-              value: "{{ .Values.db.postgresPassword }}"
+              value: "{{ .Values.db.password }}"
             - name: POSTGRES_DB
-              value: "{{ .Values.db.postgresDatabase }}"
+              value: "{{ .Values.db.database }}"
           volumeMounts:
             - name: data
               mountPath: /var/lib/postgresql/data
