@@ -1,0 +1,30 @@
+replicaCount: 1
+
+imagePullPolicy: IfNotPresent
+appName: khyaal
+
+
+frontend:
+  image: nginxdemos/hello
+  port: 80
+  resources: {}
+
+backend:
+  image: kennethreitz/httpbin
+  port: 80
+  resources: {}
+
+db:
+  image: mysql
+  port: 3306
+  mysqlRootPassword: rootpassword       # required
+  mysqlDatabase: mydb
+  mysqlUser: myuser
+  mysqlPassword: mypassword
+  resources: {}
+
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 50
