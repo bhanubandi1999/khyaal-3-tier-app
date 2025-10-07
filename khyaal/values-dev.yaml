@@ -9,6 +9,14 @@ frontend:
     limits:
       cpu: 300m
       memory: 512Mi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 2
+    metric:
+      resourceName: cpu
+      targetType: Utilization
+      averageUtilization: 70
 
 backend:
   resources:
@@ -18,6 +26,14 @@ backend:
     limits:
       cpu: 300m
       memory: 512Mi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 2
+    metric:
+      resourceName: cpu
+      targetType: Utilization
+      averageUtilization: 70
 
 db:
   resources:
@@ -27,6 +43,12 @@ db:
     limits:
       cpu: 300m
       memory: 512Mi
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 1
+    metric:
+      resourceName: cpu
+      targetType: Utilization
+      averageUtilization: 70
 
-hpa:
-  enabled: false
