@@ -3,16 +3,13 @@ replicaCount: 1
 imagePullPolicy: IfNotPresent
 appName: khyaal
 
-
 frontend:
   image: nginxdemos/hello
   port: 80
-  resources: {}
 
 backend:
   image: kennethreitz/httpbin
   port: 80
-  resources: {}
 
 db:
   image: postgres
@@ -20,7 +17,6 @@ db:
   username: postgres
   password: postgres
   database: khyaal
-  resources: {}
 
 hpa:
   enabled: true
