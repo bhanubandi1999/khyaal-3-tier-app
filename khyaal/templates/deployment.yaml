@@ -92,7 +92,7 @@ spec:
               value: "{{ .Values.db.database }}"
           volumeMounts:
             - name: data
-              mountPath: /var/lib/postgresql/data
+              mountPath: /data
               subPath: postgres
       volumes:
         - name: data
