@@ -8,11 +8,11 @@ spec:
   source:
     repoURL: 'https://github.com/bhanubandi1999/khyaal-3-tier-app.git'
     targetRevision: HEAD
-    path: '.'
+    path: './khyaal'
     helm:
       valueFiles:
-        - values.yaml
-        - values-prod.yaml
+        - khyaal/values.yaml
+        - khyaal/values-prod.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: prod
