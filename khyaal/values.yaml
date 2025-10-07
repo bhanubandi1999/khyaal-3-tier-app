@@ -6,7 +6,7 @@ appName: khyaal
 
 frontend:
   image: nginxdemos/hello
-  port: 8080 
+  port: 80
   resources: {}
 
 backend:

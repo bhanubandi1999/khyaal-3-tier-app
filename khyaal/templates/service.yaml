@@ -7,8 +7,8 @@ spec:
   selector:
     app: {{ .Values.appName }}-frontend-{{ .Values.environment }}
   ports:
-    - port: 80
-      targetPort: {{ .Values.frontend.port | default 8080}}
+    - port: {{ .Values.frontend.port}}
+      targetPort: {{ .Values.frontend.port}}
   type: ClusterIP
 
 ---
@@ -22,8 +22,8 @@ spec:
   selector:
     app: {{ .Values.appName }}-backend-{{ .Values.environment }}
   ports:
-    - port: 80
-      targetPort: {{ .Values.backend.port | default 80}}
+    - port: {{ .Values.backend.port}}
+      targetPort: {{ .Values.backend.port }}
   type: ClusterIP
 
 ---
@@ -37,6 +37,6 @@ spec:
   selector:
     app: {{ .Values.appName }}-db-{{ .Values.environment }}
   ports:
-    - port: 3306
+    - port: {{ .Values.db.port }}
       targetPort: {{ .Values.db.port }}
   type: ClusterIP
