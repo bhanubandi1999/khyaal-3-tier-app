@@ -4,11 +4,11 @@ environment: dev
 frontend:
   resources:
     requests:
-      cpu: 1Gi
-      memory: 1Gi
+      cpu: 200m
+      memory: 256Mi
     limits:
-      cpu: 1Gi
-      memory: 1Gi
+      cpu: 300m
+      memory: 512Mi
   hpa:
     enabled: true
     minReplicas: 1

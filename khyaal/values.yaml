@@ -5,21 +5,20 @@ appName: khyaal
 
 
 frontend:
-  image: bhanubandi1999/front-k8s
-  port: 3000
+  image: nginxdemos/hello
+  port: 80
   resources: {}
 
 backend:
-  image: bhanubandi1999/back-k8s
-  port: 8080
+  image: kennethreitz/httpbin
+  port: 80
   resources: {}
 
 db:
-  image: postgres:latest
-  port: 5432
-  postgresUser: postgres
-  postgresPassword: root
-  postgresDatabase: productstore
+  image: postgres
+  port: 3306
+  username: postgres
+  password: postgres
   resources: {}
 
 hpa:

@@ -56,8 +56,6 @@ spec:
               cpu: {{ .Values.backend.resources.limits.cpu }}
               memory: {{ .Values.backend.resources.limits.memory }}
           env:
-            - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://{{ .Values.appName }}-db-{{ .Values.environment }}:{{ .Values.db.port }}/{{ .Values.db.postgresDatabase }}
             - name: SPRING_DATASOURCE_USERNAME
               value: "{{ .Values.db.postgresUser }}"
             - name: SPRING_DATASOURCE_PASSWORD
