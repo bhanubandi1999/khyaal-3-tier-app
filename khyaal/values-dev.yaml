@@ -19,7 +19,7 @@ backend:
       cpu: 300m
       memory: 512Mi
 
-postgres:
+db:
   resources:
     requests:
       cpu: 200m

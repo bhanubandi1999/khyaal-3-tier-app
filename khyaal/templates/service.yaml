@@ -38,5 +38,5 @@ spec:
     app: {{ .Values.appName }}-db-{{ .Values.environment }}
   ports:
     - port: 3306
-      targetPort: {{ .Values.postgres.port }}
+      targetPort: {{ .Values.db.port }}
   type: ClusterIP
