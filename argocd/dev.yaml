@@ -11,8 +11,8 @@ spec:
     path: './khyaal'
     helm:
       valueFiles:
-        - /khyaal/values.yaml
-        - /khyaal/values-dev.yaml
+        - values.yaml
+        - values-dev.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: dev
