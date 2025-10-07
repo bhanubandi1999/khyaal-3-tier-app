@@ -1,10 +1,10 @@
-# FRONTEND 
+# FRONTEND
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.appName }}-frontend-{{ .Values.environment }}
 spec:
-  replicas: {{ .Values.frontend.replicaCount }}
+  replicas: {{ .Values.frontend.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.appName }}-frontend-{{ .Values.environment }}
@@ -34,7 +34,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.appName }}-backend-{{ .Values.environment }}
 spec:
-  replicas: {{ .Values.backend.replicaCount }}
+  replicas: {{ .Values.backend.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.appName }}-backend-{{ .Values.environment }}
@@ -57,12 +57,11 @@ spec:
               memory: {{ .Values.backend.resources.limits.memory }}
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgresql:5432/productstore
+              value: jdbc:postgresql://{{ .Values.appName }}-db-{{ .Values.environment }}:{{ .Values.db.port }}/{{ .Values.db.postgresDatabase }}
             - name: SPRING_DATASOURCE_USERNAME
-              value: postgres
+              value: "{{ .Values.db.postgresUser }}"
             - name: SPRING_DATASOURCE_PASSWORD
-              value: root
-
+              value: "{{ .Values.db.postgresPassword }}"
 
 ---
 
@@ -86,17 +85,16 @@ spec:
           image: {{ .Values.db.image }}
           ports:
             - containerPort: {{ .Values.db.port }}
-        env:
-          - name: POSTGRES_USER
-            value: "{{ .Values.db.postgresUser }}"
-          - name: POSTGRES_PASSWORD
-            value: "{{ .Values.db.postgresPassword }}"
-          - name: POSTGRES_DB
-            value: "{{ .Values.db.postgresDatabase }}"
-        volumeMounts:
-          - name: data
-            mountPath: /var/lib/postgresql/data
-
+          env:
+            - name: POSTGRES_USER
+              value: "{{ .Values.db.postgresUser }}"
+            - name: POSTGRES_PASSWORD
+              value: "{{ .Values.db.postgresPassword }}"
+            - name: POSTGRES_DB
+              value: "{{ .Values.db.postgresDatabase }}"
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
       volumes:
         - name: data
-          emptyDir: {}
+          emptyDir: {}   # replace with PVC in prod
