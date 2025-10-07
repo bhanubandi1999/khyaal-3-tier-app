@@ -95,6 +95,7 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/lib/postgresql/data
-      volumes:
-        - name: data
-          emptyDir: {}   # replace with PVC in prod
+          volumes:
+              - name: data
+                persistentVolumeClaim:
+                  claimName: {{ .Values.appName }}-pvc-{{ .Values.environment }}
