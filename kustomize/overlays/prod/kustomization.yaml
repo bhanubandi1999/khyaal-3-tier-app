@@ -8,5 +8,5 @@ namespace: prod
 nameSuffix: -prod
 
 patchesStrategicMerge:
-  - patch-resources.yaml
-  - patch-hpa.yaml
+  - resources.yaml
+  - hpa.yaml
