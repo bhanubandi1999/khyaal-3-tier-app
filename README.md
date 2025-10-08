@@ -27,4 +27,3 @@ https://www.youtube.com/watch?v=LWbbL3jZcgo&t=188s&pp=ygUSa3VzdG9taXplIG92ZXJsYX
 Documentations
 
 https://argo-cd.readthedocs.io/en/stable/user-guide/kustomize/
-
