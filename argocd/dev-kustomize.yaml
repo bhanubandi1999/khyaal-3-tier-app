@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/bhanubandi1999/khyaal-3-tier-app.git'
-    targetRevision: HEAD
+    targetRevision: kustomize
     path: kustomize/overlays/dev
   destination:
     server: 'https://kubernetes.default.svc'
