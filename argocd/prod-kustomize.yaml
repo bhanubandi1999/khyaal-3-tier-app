@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: khyaal-prod-kustomize
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/bhanubandi1999/khyaal-3-tier-app.git'
+    targetRevision: HEAD
+    path: kustomize/overlays/prod
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
