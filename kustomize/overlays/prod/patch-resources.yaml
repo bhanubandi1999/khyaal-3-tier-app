@@ -21,7 +21,7 @@ spec:
               memory: 328Mi
             limits:
               cpu: 500m
-              memory: 512Mi56Mi
+              memory: 512Mi
 
 ---
 
@@ -44,10 +44,10 @@ spec:
         - name: frontend
           resources:
             requests:
-              cpu: 328Mi
-              memory: 328Mi
+              cpu: 400m
+              memory: 256Mi
             limits:
-              cpu: 512m
+              cpu: 500m
               memory: 512Mi
 ---
 
