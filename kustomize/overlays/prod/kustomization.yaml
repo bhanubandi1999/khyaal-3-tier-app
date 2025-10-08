@@ -1,0 +1,10 @@
+resources:
+  - ../../base
+
+namespace: prod
+nameSuffix: -prod
+
+patchesStrategicMerge:
+  - patch-resources.yaml
+  - patch-hpa.yaml
+

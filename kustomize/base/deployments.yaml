@@ -1,0 +1,106 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: khyaal-backend
+  labels:
+    app: khyaal-backend
+spec:
+  selector:
+    matchLabels:
+      app: khyaal-backend
+  template:
+    metadata:
+      labels:
+        app: khyaal-backend
+    spec:
+      containers:
+        - name: backend
+          image: kennethreitz/httpbin
+          ports:
+            - containerPort: 80
+          env:
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgres"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: khyaal-frontend
+  labels:
+    app: khyaal-frontend
+spec:
+  selector:
+    matchLabels:
+      app: khyaal-frontend
+  template:
+    metadata:
+      labels:
+        app: khyaal-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: nginxdemos/hello
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: khyaal-db
+  labels:
+    app: khyaal-db
+spec:
+  selector:
+    matchLabels:
+      app: khyaal-db
+  template:
+    metadata:
+      labels:
+        app: khyaal-db
+    spec:
+      containers:
+        - name: db
+          image: postgres
+          ports:
+            - containerPort: 3306
+          env:
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              value: "postgres"
+            - name: POSTGRES_DB
+              value: "khyaal"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+          volumeMounts:
+            - name: data
+              mountPath: /data
+              subPath: postgres
+      volumes:
+        - name: data
+          emptyDir: {}

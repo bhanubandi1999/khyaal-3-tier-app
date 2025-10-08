@@ -1,0 +1,7 @@
+resources:
+  - deployments.yaml
+  - services.yaml
+  - hpa.yaml
+
+commonLabels:
+  app: khyaal

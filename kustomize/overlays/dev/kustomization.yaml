@@ -1,0 +1,9 @@
+resources:
+  - ../../base
+
+namespace: dev
+nameSuffix: -dev
+
+patchesStrategicMerge:
+  - patch-resources.yaml
+  - patch-hpa.yaml
